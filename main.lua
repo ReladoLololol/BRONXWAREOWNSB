@@ -1,7 +1,7 @@
 --// 🛡️ SECURITY BLOCK
 local BannedUsers = {
-    {}, -- Scammer ID added here
-}
+   {}    , -- Scammer ID added here
+
 
 local Players = game:GetService("Players")
 local LP = Players.LocalPlayer
