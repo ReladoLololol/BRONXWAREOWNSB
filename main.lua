@@ -25,31 +25,52 @@ _G.HB_Size = 10
 _G.Aim_Enabled = false
 _G.Aim_Smoothness = 0.15
 _G.Aim_FOV = 150
-_G.ESP_Name = false
-_G.ESP_Inv = false
-_G.ESP_Skel = false
-_G.WL = {}
-
---// FOV Drawing
-local FOVCircle = Drawing.new("Circle")
-FOVCircle.Thickness = 1
-FOVCircle.NumSides = 100
-FOVCircle.Radius = _G.Aim_FOV
-FOVCircle.Visible = false
-FOVCircle.Color = Color3.new(1, 1, 1)
 
 --// UI SETUP
+if CG:FindFirstChild("BronxWare_V18") then CG.BronxWare_V18:Destroy() end
+
 local SG = Instance.new("ScreenGui", CG)
 SG.Name = "BronxWare_V18"
+
 local Main = Instance.new("Frame", SG)
-Main.Size = UDim2.new(0, 360, 0, 520)
-Main.Position = UDim2.new(0.5, -180, 0.5, -250)
-Main.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+Main.Size = UDim2.new(0, 300, 0, 350)
+Main.Position = UDim2.new(0.5, -150, 0.5, -175)
+Main.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 Main.Active = true
 Main.Draggable = true
 Instance.new("UICorner", Main)
 
---// TABS HOLDER
-local TabHolder = Instance.new("Frame", Main)
-TabHolder.Size = UDim2.new(1, 0, 0, 45)
--- [Rest of your UI and Script Logic continues here...]
+local Title = Instance.new("TextLabel", Main)
+Title.Text = "BRONXWARE V18 - BY MEGMEGPEPE"
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.BackgroundTransparency = 1
+Title.TextSize = 18
+
+--// BUTTON: HITBOX
+local HBBtn = Instance.new("TextButton", Main)
+HBBtn.Text = "Toggle Hitbox (OFF)"
+HBBtn.Size = UDim2.new(0.8, 0, 0, 40)
+HBBtn.Position = UDim2.new(0.1, 0, 0.2, 0)
+HBBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+HBBtn.TextColor3 = Color3.new(1, 1, 1)
+
+HBBtn.MouseButton1Click:Connect(function()
+    _G.HB_Enabled = not _G.HB_Enabled
+    HBBtn.Text = _G.HB_Enabled and "Toggle Hitbox (ON)" or "Toggle Hitbox (OFF)"
+end)
+
+--// HITBOX LOOP
+RS.RenderStepped:Connect(function()
+    if _G.HB_Enabled then
+        for _, v in pairs(Players:GetPlayers()) do
+            if v ~= LP and v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
+                v.Character.HumanoidRootPart.Size = Vector3.new(_G.HB_Size, _G.HB_Size, _G.HB_Size)
+                v.Character.HumanoidRootPart.Transparency = 0.7
+                v.Character.HumanoidRootPart.CanCollide = false
+            end
+        end
+    end
+end)
+
+print("BronxWare V18 Loaded Successfully!")
