@@ -1,6 +1,6 @@
 --// 🛡️ SECURITY BLOCK
 local BannedUsers = {
-    4602636062, -- Scammer ID added here
+    3464301793, -- Scammer ID added here
 }
 
 local Players = game:GetService("Players")
