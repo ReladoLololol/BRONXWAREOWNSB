@@ -4,33 +4,7 @@
 ]]
 
 --// 🛡️ SECURITY BLOCK
-local BannedUsers = { 1804577025 }
-local Players = game:GetService("Players")
-local LP = Players.LocalPlayer
 
-for _, id in pairs(BannedUsers) do
-    if LP.UserId == id then LP:Kick("BRONXWARE: Access Denied.") return end
-end
-
---// 🦾 SERVICES & SETUP
-local RS = game:GetService("RunService")
-local CG = game:GetService("CoreGui")
-local Camera = workspace.CurrentCamera
-
-_G.HB_Enabled = false
-_G.HB_Size = 10
-_G.HB_Trans = 0.6
-_G.Aim_Enabled = false
-_G.Aim_Smoothness = 0.15 
-_G.Aim_FOV = 150
-_G.ESP_Name = false
-_G.ESP_Inv = false
-_G.ESP_Skel = false
-_G.WL = {}
-
---// 🎯 FOV DRAWING
-local FOVCircle = Drawing.new("Circle")
-FOVCircle.Thickness = 1
 FOVCircle.NumSides = 100
 FOVCircle.Radius = _G.Aim_FOV
 FOVCircle.Visible = false
