@@ -1,5 +1,5 @@
 --// 🛡️ SECURITY BLOCK
-local BannedUsers = { 8691047775 }
+local BannedUsers = { 4602636062 }
 local Players = game:GetService("Players")
 local LP = Players.LocalPlayer
 
